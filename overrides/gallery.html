@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="lc-gallery">
+
+    <h1>Galería</h1>
+
+    <div class="lc-gallery-grid">
+
+        {% for album in gallery_albums %}
+
+        <article class="lc-gallery-card">
+
+            <a
+                href="{{ album.url | url }}"
+                class="lc-gallery-card__image"
+            >
+
+                <img
+                    src="{{ album.cover | url }}"
+                    alt="{{ album.title }}"
+                >
+
+            </a>
+
+            <div class="lc-gallery-card__content">
+
+                <h2>
+
+                    <a href="{{ album.url | url }}">
+                        {{ album.title }}
+                    </a>
+
+                </h2>
+
+                <div class="lc-gallery-card__meta">
+
+                    {% if album.date %}
+                    <span>
+                        {{ album.date }}
+                    </span>
+                    {% endif %}
+
+                    <span>
+                        {{ album.count }}
+                        fotografías
+                    </span>
+
+                </div>
+
+                {% if album.description %}
+
+                <p>
+                    {{ album.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+{{ page.content }}
+
+
+<section class="lc-news">
+
+    <div class="lc-section-header">
+
+        <h2>Últimas noticias</h2>
+
+        <a href="{{ 'noticias/' | url }}">
+            Todas las noticias →
+        </a>
+
+    </div>
+
+
+    <div class="lc-news-grid">
+
+        {% for item in latest_news %}
+
+        <article class="lc-news-card">
+
+            <a
+                class="lc-news-card__image"
+                href="{{ item.url | url }}"
+            >
+
+                {% if item.image %}
+
+                <img
+                    src="{{ ('assets/images/noticias/' ~ item.image) | url }}"
+                    alt="{{ item.title }}"
+                >
+
+                {% endif %}
+
+            </a>
+
+
+            <div class="lc-news-card__content">
+
+                <span class="lc-news-date">
+
+                    {{ item.date.strftime("%d.%m.%Y") }}
+
+                </span>
+
+
+                <h3>
+
+                    <a href="{{ item.url | url }}">
+                        {{ item.title }}
+                    </a>
+
+                </h3>
+
+
+                {% if item.description %}
+
+                <p>
+                    {{ item.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

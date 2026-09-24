@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="lc-blog">
+
+  <h1>Noticias</h1>
+
+  <div class="lc-blog-list">
+
+    {% for post in posts %}
+
+    <article class="lc-blog-item">
+
+      <a
+        href="{{ post.url | url }}"
+        class="lc-blog-item__image"
+      >
+
+        {% if post.meta.image %}
+
+        <img
+          src="{{ ('assets/images/noticias/' ~ post.meta.image) | url }}"
+          alt="{{ post.meta.title }}"
+        >
+
+        {% endif %}
+
+      </a>
+
+
+      <div class="lc-blog-item__content">
+
+        <div class="lc-blog-item__date">
+          {{ post.config.date.created.strftime("%d %b %Y") }}
+        </div>
+
+        <h2>
+          <a href="{{ post.url | url }}">
+            {{ post.meta.title }}
+          </a>
+        </h2>
+
+        {% if post.meta.description %}
+        <p class="lc-blog-item__description">
+          {{ post.meta.description }}
+        </p>
+        {% endif %}
+
+        <a
+          href="{{ post.url | url }}"
+          class="lc-blog-item__more"
+        >
+          Leer más →
+        </a>
+
+      </div>
+
+    </article>
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}

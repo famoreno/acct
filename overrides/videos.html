@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="lc-videos">
+
+    <h1>Vídeos</h1>
+
+    <div class="lc-videos-grid">
+
+        {% for video in videos %}
+
+        <article class="lc-video-card">
+
+            <div class="lc-video-player">
+
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/{{ video.youtube }}"
+                    title="{{ video.title }}"
+                    loading="lazy"
+                    frameborder="0"
+                    allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                        web-share
+                    "
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+
+            <div class="lc-video-card__content">
+
+                {% if video.date %}
+
+                <div class="lc-video-card__date">
+                    {{ video.date }}
+                </div>
+
+                {% endif %}
+
+
+                <h2>
+                    {{ video.title }}
+                </h2>
+
+
+                {% if video.description %}
+
+                <p>
+                    {{ video.description }}
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

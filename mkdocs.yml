@@ -1,0 +1,45 @@
+site_name: Asociación Cultural Los Críticos De Teatro
+site_url: https://gtloscriticos.es
+
+theme:
+  name: material
+  language: es
+  logo: assets/images/logo.png
+  favicon: assets/images/logo.png
+
+  custom_dir: overrides
+
+  features:
+    - navigation.top
+
+  palette:
+    scheme: default
+
+nav:
+  - Inicio: index.md
+  - Noticias: noticias/index.md
+  - Vídeos: videos/index.md
+  - Galería: galeria/index.md
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - blog:
+      blog_dir: noticias
+      post_dir: "{blog}/posts"
+      post_url_format: "{slug}"
+      archive: false
+      categories: false
+      pagination_per_page: 10
+  - gen-files:
+      scripts:
+        - gen_gallery.py
+
+hooks:
+  - hooks.py

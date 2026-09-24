@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="lc-album">
+
+    <header class="lc-album__header">
+
+        <a
+            href="{{ 'galeria/' | url }}"
+            class="lc-album__back"
+        >
+            ← Volver a galería
+        </a>
+
+        <h1>
+            {{ page.meta.title }}
+        </h1>
+
+
+        {% if page.meta.album_date %}
+
+        <div class="lc-album__date">
+            {{ page.meta.album_date }}
+        </div>
+
+        {% endif %}
+
+
+        {% if page.meta.description %}
+
+        <p class="lc-album__description">
+            {{ page.meta.description }}
+        </p>
+
+        {% endif %}
+
+    </header>
+
+
+    <div class="lc-album-grid">
+
+        {% for image in page.meta.images %}
+
+        {% set image_url =
+            'galeria/albums/'
+            ~ page.meta.album_slug
+            ~ '/'
+            ~ image
+        %}
+
+        <a
+            href="{{ image_url | url }}"
+            class="lc-album-image"
+        >
+
+            <img
+                src="{{ image_url | url }}"
+                alt="{{ page.meta.title }}"
+                loading="lazy"
+            >
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

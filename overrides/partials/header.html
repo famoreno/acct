@@ -1,0 +1,32 @@
+<header class="lc-header">
+  <div class="lc-header__inner">
+
+    <a href="{{ config.site_url | default(nav.homepage.url, true) | url }}"
+       class="lc-logo">
+
+      <img
+        src="{{ 'assets/images/logo.png' | url }}"
+        alt="Asociación Cultural Los Críticos De Teatro"
+        class="lc-logo__img"
+      >
+
+    </a>
+
+    <nav class="lc-nav">
+
+      {% for nav_item in nav %}
+
+        <a
+          href="{{ nav_item.url | url }}"
+          class="lc-nav__link
+          {% if nav_item.active %}lc-nav__link--active{% endif %}"
+        >
+          {{ nav_item.title }}
+        </a>
+
+      {% endfor %}
+
+    </nav>
+
+  </div>
+</header>
